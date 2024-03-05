@@ -19,13 +19,13 @@ resource "kubernetes_namespace" "monitoring" {
 }
 
 resource "plural_git_repository" "monitoring" {
-  url = local.repo_url
-  #private_key = local.context.spec.configuration.console.private_key
-  #decrypt     = true
+  url         = local.repo_url
+  private_key = "asdf"
+  decrypt     = false
 }
 
-resource "plural_service_deployment" "helm-repositories" {
-  name      = "helm-repositories"
+resource "plural_service_deployment" "monitoring-helm-repositories" {
+  name      = "monitoring-helm-repositories"
   namespace = kubernetes_namespace.monitoring.metadata[0].name
   repository = {
     id     = plural_git_repository.monitoring.id
@@ -34,6 +34,9 @@ resource "plural_service_deployment" "helm-repositories" {
   }
   cluster = {
     id = data.plural_cluster.mgmt.id
+  }
+  configuration = {
+    namespace = kubernetes_namespace.monitoring.metadata[0].name
   }
   protect = true
 
