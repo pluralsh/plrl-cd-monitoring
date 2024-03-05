@@ -10,7 +10,7 @@ spec:
     ref: main
   repositoryRef:
     kind: GitRepository
-    name: {{ configuration.}}
+    name: monitoring
     namespace: {{ configuration.namespace }}
   helm:
     version: 56.5.0
