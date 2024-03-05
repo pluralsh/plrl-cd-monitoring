@@ -49,6 +49,6 @@ data "kubernetes_secret" "console-auth" {
 }
 
 provider "plural" {
-  console_url  = "https://console.boot-test.onplural.sh"
+  console_url  = "https://console.boot-aws.onplural.sh"
   access_token = data.kubernetes_secret.console-auth.data.access-token
 }

@@ -52,8 +52,9 @@ resource "plural_service_deployment" "monitoring" {
     id = data.plural_cluster.mgmt.id
   }
   configuration = {
-    repoUrl   = local.repo_url
-    namespace = kubernetes_namespace.monitoring.metadata[0].name
+    monitoringRepo = plural_git_repository.monitoring.id
+    repoUrl        = local.repo_url
+    namespace      = kubernetes_namespace.monitoring.metadata[0].name
   }
   protect = true
 
