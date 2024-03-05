@@ -24,7 +24,7 @@ spec:
   clusterRef:
     kind: Cluster
     name: mgmt
-    namespace: {{ configuration.namespace }}
+    namespace: infra
 #---
 ## make global so it's also deployed on the other clusters
 #apiVersion: deployments.plural.sh/v1alpha1

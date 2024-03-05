@@ -24,4 +24,4 @@ spec:
   clusterRef:
     kind: Cluster
     name: mgmt
-    namespace: {{ configuration.namespace }}
+    namespace: infra
