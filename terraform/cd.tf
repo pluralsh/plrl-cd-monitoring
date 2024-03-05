@@ -1,6 +1,6 @@
 locals {
   #context  = yamldecode(data.local_sensitive_file.context.content)
-  repo_url = "git@github.com:pluralsh/plrl-cd-monitoring.git"
+  repo_url = "https://github.com/pluralsh/plrl-cd-monitoring.git"
 }
 
 #data "local_sensitive_file" "context" {
