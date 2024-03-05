@@ -1,0 +1,27 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: loki
+  namespace: {{ configuration.namespace }}
+spec:
+  namespace: monitoring
+  git:
+    folder: helm-values
+    ref: main
+  repositoryRef:
+    kind: GitRepository
+    name: monitoring
+    namespace: {{ configuration.namespace }}
+  helm:
+    version: 5.43.5
+    chart: loki
+    valuesFiles:
+    - loki.yaml
+    - loki.yaml.liquid
+    repository:
+      name: grafana
+      namespace: {{ configuration.namespace }}
+  clusterRef:
+    kind: Cluster
+    name: mgmt
+    namespace: {{ configuration.namespace }}

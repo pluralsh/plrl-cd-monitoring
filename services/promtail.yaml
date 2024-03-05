@@ -1,0 +1,27 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: promtail
+  namespace: {{ configuration.namespace }}
+spec:
+  namespace: monitoring
+  git:
+    folder: helm-values
+    ref: main
+  repositoryRef:
+    kind: GitRepository
+    name: monitoring
+    namespace: {{ configuration.namespace }}
+  helm:
+    version: 6.15.5
+    chart: promtail
+    valuesFiles:
+    - promtail.yaml
+    - promtail.yaml.liquid
+    repository:
+      name: grafana
+      namespace: {{ configuration.namespace }}
+  clusterRef:
+    kind: Cluster
+    name: mgmt
+    namespace: {{ configuration.namespace }}
