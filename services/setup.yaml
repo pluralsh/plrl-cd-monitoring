@@ -1,0 +1,7 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: GitRepository
+metadata:
+  name: monitoring
+  namespace: monitoring
+spec:
+  url: {{ configuration.repoUrl }}
