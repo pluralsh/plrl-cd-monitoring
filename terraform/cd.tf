@@ -19,9 +19,8 @@ resource "kubernetes_namespace" "monitoring" {
 }
 
 resource "plural_git_repository" "monitoring" {
-  url         = local.repo_url
-  private_key = "asdf"
-  decrypt     = false
+  url     = local.repo_url
+  decrypt = false
 }
 
 resource "plural_service_deployment" "monitoring-helm-repositories" {
