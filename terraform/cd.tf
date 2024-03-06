@@ -38,7 +38,7 @@ resource "plural_service_deployment" "monitoring-helm-repositories" {
   configuration = {
     namespace = kubernetes_namespace.monitoring.metadata[0].name
   }
-  protect = true
+  protect = false
 
   depends_on = [kubernetes_namespace.monitoring]
 }
@@ -59,7 +59,8 @@ resource "plural_service_deployment" "monitoring" {
     repoUrl        = local.repo_url
     namespace      = kubernetes_namespace.monitoring.metadata[0].name
   }
-  protect = true
+
+  protect = false
 
   depends_on = [kubernetes_namespace.monitoring]
 }
