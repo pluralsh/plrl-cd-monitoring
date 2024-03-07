@@ -1,1 +1,24 @@
-{}
+storage:
+  bucketNames:
+    chunks: chunks
+    ruler: ruler
+    admin: admin
+  type: s3
+  s3:
+    s3: s3://us-east-2
+    region: us-east-2
+
+gateway:
+  enabled: true
+  image:
+    registry: docker.io
+    repository: nginxinc/nginx-unprivileged
+    tag: 1.24-alpine
+    pullPolicy: IfNotPresent
+  ingress:
+    ingressClassName: nginx
+    annotations:
+      kubernetes.io/tls-acme: "true"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
+  

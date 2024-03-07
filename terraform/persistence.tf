@@ -81,7 +81,8 @@ module "assumable_role_loki" {
 resource "plural_service_context" "loki" {
   name = "loki"
   configuration = {
-    roleArn = module.assumable_role_loki.iam_role_arn
+    roleArn    = module.assumable_role_loki.iam_role_arn
+    bucketName = aws_s3_bucket.bucket.id
   }
 }
 

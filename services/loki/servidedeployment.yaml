@@ -13,8 +13,8 @@ spec:
     name: monitoring
     namespace: {{ configuration.namespace }}
   helm:
-    version: 5.43.5
-    chart: loki
+    version: 3.x.x
+    chart: loki-distributed
     valuesFiles:
     - loki.yaml
     - loki.yaml.liquid

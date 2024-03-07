@@ -1,1 +1,10 @@
-namespaceOverride: {{ configuration.namespace }}
+storage:
+  bucketNames:
+    chunks: {{ contexts.loki.bucketName }}
+    ruler: {{ contexts.loki.bucketName }}
+    admin: {{ contexts.loki.bucketName }}
+  type: s3
+  s3:
+    s3: s3://us-east-2
+    region: us-east-2
+

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: basic-auth
+stringData:
+  #auth: {{ configuration.auth }}
+  auth: test:password
