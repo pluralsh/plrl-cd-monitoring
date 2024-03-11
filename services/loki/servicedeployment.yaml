@@ -12,6 +12,8 @@ spec:
     kind: GitRepository
     name: monitoring
     namespace: {{ configuration.namespace }}
+  contexts:
+    - loki # binds the loki context from the tf stack to this service
   helm:
     version: 5.43.6
     chart: loki
