@@ -1,3 +1,6 @@
+serviceAccount:
+  annotations:
+    test: "test"
 gateway:
   enabled: true
   image:
