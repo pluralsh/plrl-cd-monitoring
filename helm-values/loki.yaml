@@ -1,13 +1,3 @@
-storage:
-  bucketNames:
-    chunks: chunks
-    ruler: ruler
-    admin: admin
-  type: s3
-  s3:
-    s3: s3://us-east-2
-    region: us-east-2
-
 gateway:
   enabled: true
   image:
