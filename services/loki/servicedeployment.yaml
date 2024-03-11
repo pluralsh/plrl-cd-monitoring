@@ -17,7 +17,7 @@ spec:
     chart: loki
     valuesFiles:
     - loki.yaml
-    #- loki.yaml.liquid
+    - loki.yaml.liquid
     repository:
       name: grafana
       namespace: {{ configuration.namespace }}
