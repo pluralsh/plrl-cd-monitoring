@@ -8,3 +8,6 @@ storage:
     s3: s3://us-east-2
     region: us-east-2
 
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: {{ contexts.loki.roleArn }}
