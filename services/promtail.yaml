@@ -7,7 +7,7 @@ spec:
   namespace: monitoring
   git:
     folder: helm-values
-    ref: main
+    ref: logstack
   repositoryRef:
     kind: GitRepository
     name: monitoring

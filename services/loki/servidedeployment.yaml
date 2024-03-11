@@ -7,14 +7,14 @@ spec:
   namespace: monitoring
   git:
     folder: helm-values
-    ref: main
+    ref: logstack
   repositoryRef:
     kind: GitRepository
     name: monitoring
     namespace: {{ configuration.namespace }}
   helm:
-    version: 3.x.x
-    chart: loki-distributed
+    version: 5.43.6
+    chart: loki
     valuesFiles:
     - loki.yaml
     - loki.yaml.liquid
