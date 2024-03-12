@@ -13,17 +13,22 @@ serviceMonitor:
 daemonset:
 # -- Deploys Promtail as a DaemonSet
   enabled: true
+extraEnv:
+  - name: LOKI_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: basic-auth
+        key: user
+  - name: LOKI_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: basic-auth
+        key: password
 config:
   clients:
   - url: http://loki-gateway/loki/api/v1/push
     tenant_id: 1
-  snippets:
-    pipelineStages:
-      - docker:
-      # TODO: what's this stage for? anonymizing ip addresses?
-      #- match:
-      #    selector: '{app="ingress-nginx"}'
-      #    stages:
-      #      - replace:
-      #          expression: '(?:[0-9]{1,3}\.){3}([0-9]{1,3})'
-      #          replace: '***'
+    basic_auth:
+      username: ${LOKI_USERNAME}
+      password: ${LOKI_PASSWORD}
+
