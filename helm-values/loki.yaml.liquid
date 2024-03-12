@@ -8,6 +8,11 @@ loki:
     s3:
       s3: s3://us-east-2
       region: us-east-2
+  gateway:
+    basicAuth:
+      enabled: "true"
+      username: {{ configuration.basicAuthUser }}
+      password: {{ configuration.basicAuthPassword }}
 
 serviceAccount:
   annotations:

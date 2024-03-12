@@ -3,5 +3,5 @@ kind: Secret
 metadata:
   name: basic-auth
 stringData:
-  #auth: {{ configuration.auth }}
-  auth: test:password
+  auth: "{{configuration.basicAuthUser}}:{{ configuration.basicAuthPassword }}"
+  #auth: test:password
