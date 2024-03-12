@@ -3,6 +3,6 @@ kind: Secret
 metadata:
   name: basic-auth
 stringData:
-  .htpasswd: {{ htpasswd configuration.basicAuthUser configuration.basicAuthPassword }}
+  .htpasswd: {{ configuration.basicAuthHtpasswd }}
   user: {{ configuration.basicAuthUser }}
   password: {{ configuration.basicAuthPassword }}
