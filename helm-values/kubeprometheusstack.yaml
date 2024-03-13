@@ -1,16 +1,41 @@
-global:
-  rbac:
-    pspEnabled: false
-
-kubeControllerManager:
-  enabled: false
-
-kubeScheduler:
-  enabled: false
-
-defaultRules:
-  rules:
-    kubeProxy: false
+fullnameOverride: monitoring 
 
 grafana:
-  enabled: false
+  enabled: true
+  admin:
+    password: admin # placeholder will get overwritten
+    user: admin
+  service:
+    type: ClusterIP
+  ingress:
+    enabled: true
+    path: /.*
+    annotations:
+      kubernetes.io/tls-acme: "true"
+      kubernetes.io/ingress.class: "nginx"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
+      nginx.ingress.kubernetes.io/use-regex: "true"
+    hosts:
+    - grafana.boot-aws.onplural.sh
+    tls:
+    - hosts:
+      - grafana.boot-aws.onplural.sh
+      secretName: grafana-tls
+  sidecar:
+    dashboards:
+      provider:
+        name: sidecar
+        allowUiUpdates: true
+        foldersFromFilesStructure: true
+      enabled: true
+      searchNamespace: ALL
+      folderAnnotation: k8s-sidecar-target-directory
+    datasources:
+      enabled: true
+      searchNamespace: ALL
+    plugins:
+      enabled: false
+      searchNamespace: ALL
+
+ 
