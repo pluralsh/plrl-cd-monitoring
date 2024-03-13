@@ -1,0 +1,27 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: opencost
+  namespace: {{ configuration.namespace }}
+spec:
+  namespace: monitoring
+  git:
+    folder: helm-values
+    ref: logstack
+  repositoryRef:
+    kind: GitRepository
+    name: monitoring
+    namespace: {{ configuration.namespace }}
+  helm:
+    version: 0.1.1
+    chart: prometheus-opencost-exporter
+    valuesFiles:
+    - opencost.yaml
+    - opencost.yaml.liquid
+    repository:
+      name: grafana
+      namespace: {{ configuration.namespace }}
+  clusterRef:
+    kind: Cluster
+    name: mgmt
+    namespace: infra
