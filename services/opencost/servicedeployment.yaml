@@ -19,7 +19,7 @@ spec:
     - opencost.yaml
     - opencost.yaml.liquid
     repository:
-      name: grafana
+      name: prometheus-community
       namespace: {{ configuration.namespace }}
   clusterRef:
     kind: Cluster
