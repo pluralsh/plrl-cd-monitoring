@@ -1,5 +1,11 @@
 fullnameOverride: monitoring 
 
+prometheusOperator:
+  tls:
+    enabled: false
+  admissionWebhooks:
+    enabled: false
+
 grafana:
   enabled: true
   admin:
