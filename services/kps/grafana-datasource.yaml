@@ -14,7 +14,7 @@ data:
       access: proxy
       orgId: 1
       uid: loki
-      url: http://loki-gateway/loki/api:3100
+      url: http://loki-gateway.monitoring
       jsonData:
         manageAlerts: true
         alertmanagerUid: alertmanager
