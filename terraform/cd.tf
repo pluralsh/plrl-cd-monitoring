@@ -28,7 +28,7 @@ resource "plural_service_deployment" "monitoring-helm-repositories" {
   namespace = kubernetes_namespace.monitoring.metadata[0].name
   repository = {
     id     = plural_git_repository.monitoring.id
-    ref    = "main"
+    ref    = "logstack"
     folder = "helm-repositories"
   }
   cluster = {
