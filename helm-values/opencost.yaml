@@ -204,8 +204,13 @@ opencost:
       # -- Ingress controller which implements the resource
       ingressClassName: nginx 
       # -- Annotations for Ingress resource
-      annotations: {}
-        # kubernetes.io/tls-acme: "true"
+      annotations:
+        kubernetes.io/tls-acme: "true"
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
+        nginx.ingress.kubernetes.io/auth-type: basic
+        nginx.ingress.kubernetes.io/auth-secret: basic-auth
+        nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required' 
       # -- A list of host rules used to configure the Ingress
       # @default -- See [values.yaml](values.yaml)
       hosts:
