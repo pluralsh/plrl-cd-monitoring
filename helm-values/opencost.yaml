@@ -3,7 +3,7 @@ nameOverride: ""
 # -- Overwrite all resources name created by the chart
 fullnameOverride: ""
 # -- Override the deployment namespace
-namespaceOverride: monitoringg
+namespaceOverride: monitoring
 
 loglevel: info
 
