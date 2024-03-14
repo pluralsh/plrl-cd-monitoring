@@ -401,7 +401,7 @@ opencost:
       # -- Ingress for OpenCost UI
       enabled: true
       # -- Ingress controller which implements the resource
-      ingressClassName: ""
+      ingressClassName: nginx 
       # -- Annotations for Ingress resource
       annotations: {}
         # kubernetes.io/tls-acme: "true"
