@@ -120,11 +120,7 @@ opencost:
     # -- Prometheus Bearer token
     bearer_token: ""
     bearer_token_key: DB_BEARER_TOKEN
-    external:
-      # -- Use external Prometheus (eg. Grafana Cloud)
-      enabled: false
-      # -- External Prometheus url
-      url: "https://prometheus.example.com/prometheus"
+
     internal:
       # -- Use in-cluster Prometheus
       enabled: true
@@ -134,23 +130,7 @@ opencost:
       namespaceName: monitoring
       # -- Service port of in-cluster Prometheus
       port: http-ui
-    amp:
-      # -- Use Amazon Managed Service for Prometheus (AMP)
-      enabled: false  # If true, opencost will be configured to remote_write and query from Amazon Managed Service for Prometheus.
-      # -- Workspace ID for AMP
-      workspaceId: ""
-    thanos:
-      enabled: false
-      queryOffset: ''
-      maxSourceResolution: ''
-      internal:
-        enabled: true
-        serviceName: my-thanos-query
-        namespaceName: opencost
-        port: 10901
-      external:
-        enabled: false
-        url: 'https://thanos-query.example.com/thanos'
+
 
   ui:
     # -- Enable OpenCost UI
@@ -240,34 +220,6 @@ opencost:
         - secretName: opencost-tls
           hosts:
             - opencost.boot-aws.onplural.sh
-
-  sigV4Proxy:
-    image: public.ecr.aws/aws-observability/aws-sigv4-proxy:latest
-    imagePullPolicy: IfNotPresent
-    name: aps
-    port: 8005
-    region: us-west-2 # The AWS region
-    host: aps-workspaces.us-west-2.amazonaws.com # The hostname for AMP service.
-    # role_arn: arn:aws:iam::<account>:role/role-name # The AWS IAM role to assume.
-    extraEnv: # Pass extra env variables to sigV4Proxy
-    # - name: AWS_ACCESS_KEY_ID
-    #   value: <access_key>
-    # - name: AWS_SECRET_ACCESS_KEY
-    #   value: <secret_key>
-    resources: {}
-      # limits:
-      #   cpu: 200m
-      #   memory: 500Mi
-      # requests:
-      #   cpu: 20m
-      #   memory: 32Mi
-    securityContext: {}
-      # capabilities:
-      #   drop:
-      #   - ALL
-      # readOnlyRootFilesystem: true
-      # runAsNonRoot: true
-      # runAsUser: 65534
   # -- Toleration labels for pod assignment
   tolerations: []
   # -- Node labels for pod assignment
@@ -294,7 +246,3 @@ opencost:
     #       containerPort: 8082
     #       protocol: TCP
     #   resources: {}
-
-# -- A list of volumes to be added to the pod
-extraVolumes: []
-
