@@ -14,7 +14,7 @@ additionalScrapeConfigs:
     scheme: http
     dns_sd_configs:
     - names:
-      - opencost.opencost
+      - opencost.monitoring
       type: 'A'
       port: 9003
 grafana:
