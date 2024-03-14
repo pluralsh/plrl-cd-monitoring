@@ -412,7 +412,7 @@ opencost:
           paths:
             - /
       # -- Redirect ingress to an extraPort defined on the service such as oauth-proxy
-      servicePort: http-ui
+      servicePort: 9090
       # servicePort: oauth-proxy
       # -- Ingress TLS configuration
       tls: 
