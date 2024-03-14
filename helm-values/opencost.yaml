@@ -5,7 +5,7 @@ fullnameOverride: ""
 # -- Override the deployment namespace
 namespaceOverride: monitoring
 
-loglevel: debug
+loglevel: info
 
 plugins:
   enabled: false
@@ -281,7 +281,7 @@ opencost:
       # -- Namespace of in-cluster Prometheus
       namespaceName: monitoring
       # -- Service port of in-cluster Prometheus
-      port: 9090
+      port: http-ui
     amp:
       # -- Use Amazon Managed Service for Prometheus (AMP)
       enabled: false  # If true, opencost will be configured to remote_write and query from Amazon Managed Service for Prometheus.
