@@ -15,7 +15,7 @@ spec:
   #contexts:
   #  - opencost # binds the loki context from the tf stack to this service
   helm:
-    version: 0.1.1
+    version: 1.31.0
     chart: opencost
     valuesFiles:
     - opencost.yaml
