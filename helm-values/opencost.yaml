@@ -200,7 +200,7 @@ opencost:
 
     ingress:
       # -- Ingress for OpenCost UI
-      enabled: true
+      enabled: false
       # -- Ingress controller which implements the resource
       ingressClassName: nginx 
       # -- Annotations for Ingress resource
