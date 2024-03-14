@@ -129,7 +129,7 @@ opencost:
       # -- Namespace of in-cluster Prometheus
       namespaceName: monitoring
       # -- Service port of in-cluster Prometheus
-      port: http-ui
+      port: 9090
 
 
   ui:
@@ -200,7 +200,7 @@ opencost:
 
     ingress:
       # -- Ingress for OpenCost UI
-      enabled: false
+      enabled: true
       # -- Ingress controller which implements the resource
       ingressClassName: nginx 
       # -- Annotations for Ingress resource
@@ -213,7 +213,7 @@ opencost:
           paths:
             - /
       # -- Redirect ingress to an extraPort defined on the service such as oauth-proxy
-      servicePort: 9090
+      servicePort: http-ui
       # servicePort: oauth-proxy
       # -- Ingress TLS configuration
       tls: 
