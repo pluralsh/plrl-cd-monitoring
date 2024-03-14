@@ -50,39 +50,8 @@ serviceAccount:
 
 # NetworkPolicies for ingress
 networkPolicies:
-  # -- Specifies whether networkpolicies should be created
   enabled: false
 
-  # -- Internal Prometheus settings related to NetworkPolicies
-  prometheus:
-    # -- Namespace where internal Prometheus is installed
-    namespace: prometheus-system
-    # -- Pod port of in-cluster Prometheus
-    port: 9090
-    # -- Labels applied to the Prometheus server pod(s)
-    labels:
-      app.kubernetes.io/name: prometheus
-
-# --  Strategy to be used for the Deployment
-updateStrategy:
-  rollingUpdate:
-    maxSurge: 1
-    maxUnavailable: 1
-  type: RollingUpdate
-# --  Annotations to add to the all the resources
-annotations: {}
-# --  Annotations to add to the OpenCost Pod
-podAnnotations: {}
-# --  Annotations to add to the Secret
-secretAnnotations: {}
-# --  Labels to add to the OpenCost Pod
-podLabels: {}
-# --  Pod priority
-priorityClassName: ~
-
-# -- Holds pod-level security attributes and common container settings
-podSecurityContext: {}
-  # fsGroup: 2000
 
 service:
   enabled: true
@@ -308,7 +277,7 @@ opencost:
       # -- Use in-cluster Prometheus
       enabled: true
       # -- Service name of in-cluster Prometheus
-      serviceName: prometheus-monitoring
+      serviceName: monitoring-prometheus
       # -- Namespace of in-cluster Prometheus
       namespaceName: monitoring
       # -- Service port of in-cluster Prometheus
