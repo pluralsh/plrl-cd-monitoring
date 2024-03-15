@@ -26,7 +26,8 @@ extraEnv:
         key: password
 config:
   clients:
-  - url: http://loki-gateway/loki/api/v1/push
+  #- url: http://loki-gateway/loki/api/v1/push
+  - url: https://loki.boot-aws.onplural.sh/api/api/v1/push
     tenant_id: 1
     basic_auth:
       username: ${LOKI_USERNAME}
