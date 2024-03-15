@@ -25,3 +25,14 @@ spec:
     kind: Cluster
     name: mgmt
     namespace: infra
+---
+# make global so it's also deployed on the other clusters
+apiVersion: deployments.plural.sh/v1alpha1
+kind: GlobalService
+metadata:
+  name: promtail
+  namespace: {{ configuration.namespace }}
+spec:
+  serviceRef:
+    name: promtail
+    namespace: {{ configuration.namespace }}
