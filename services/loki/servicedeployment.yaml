@@ -8,6 +8,9 @@ spec:
   git:
     folder: helm-values
     ref: logstack
+  configurationRef:
+    name: basic-auth
+    namespace: {{ configuration.namespace }}
   repositoryRef:
     kind: GitRepository
     name: monitoring

@@ -9,27 +9,16 @@ tolerations:
 - effect: NoExecute
   operator: Exists
 serviceMonitor:
-  enabled: true
+  enabled: false # ignore for now so you can ensure installability
 daemonset:
 # -- Deploys Promtail as a DaemonSet
   enabled: true
-extraEnv:
-  - name: LOKI_USERNAME
-    valueFrom:
-      secretKeyRef:
-        name: basic-auth
-        key: user
-  - name: LOKI_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: basic-auth
-        key: password
 config:
   clients:
   #- url: http://loki-gateway/loki/api/v1/push
   - url: https://loki.boot-aws.onplural.sh/api/api/v1/push
     tenant_id: 1
     basic_auth:
-      username: ${LOKI_USERNAME}
-      password: ${LOKI_PASSWORD}
+      username: "{{ .Values.lokiUsername }}"
+      password: "{{ .Values.lokiPassword }}"
 

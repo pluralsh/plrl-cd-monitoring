@@ -11,8 +11,8 @@ loki:
   gateway:
     basicAuth:
       enabled: "true"
-      username: {{ configuration.basicAuthUser }}
-      password: {{ configuration.basicAuthPassword }}
+      username: {{ configuration.user }}
+      password: {{ configuration.password }}
 
 serviceAccount:
   annotations:

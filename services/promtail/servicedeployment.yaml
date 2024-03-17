@@ -12,6 +12,9 @@ spec:
     kind: GitRepository
     name: monitoring
     namespace: {{ configuration.namespace }}
+  configurationRef:
+    name: basic-auth
+    namespace: {{ configuration.namespace }}
   helm:
     version: 6.15.5
     chart: promtail
