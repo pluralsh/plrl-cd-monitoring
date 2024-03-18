@@ -2,7 +2,7 @@ apiVersion: deployments.plural.sh/v1alpha1
 kind: ServiceDeployment
 metadata:
   name: promtail
-  namespace: {{ configuration.namespace }}
+  namespace: monitoring
 spec:
   namespace: monitoring
   git:
@@ -11,10 +11,10 @@ spec:
   repositoryRef:
     kind: GitRepository
     name: monitoring
-    namespace: {{ configuration.namespace }}
+    namespace: monitoring
   configurationRef:
     name: basic-auth
-    namespace: {{ configuration.namespace }}
+    namespace: monitoring
   helm:
     version: 6.15.5
     chart: promtail
@@ -23,7 +23,7 @@ spec:
     - promtail.yaml.liquid
     repository:
       name: grafana
-      namespace: {{ configuration.namespace }}
+      namespace: monitoring
   clusterRef:
     kind: Cluster
     name: mgmt
@@ -34,8 +34,8 @@ apiVersion: deployments.plural.sh/v1alpha1
 kind: GlobalService
 metadata:
   name: promtail
-  namespace: {{ configuration.namespace }}
+  namespace: monitoring
 spec:
   serviceRef:
     name: promtail
-    namespace: {{ configuration.namespace }}
+    namespace: monitoring

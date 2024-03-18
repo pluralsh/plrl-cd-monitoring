@@ -2,7 +2,7 @@ apiVersion: deployments.plural.sh/v1alpha1
 kind: ServiceDeployment
 metadata:
   name: loki
-  namespace: {{ configuration.namespace }}
+  namespace: monitoring
 spec:
   namespace: monitoring
   git:
@@ -10,11 +10,11 @@ spec:
     ref: logstack
   configurationRef:
     name: basic-auth
-    namespace: {{ configuration.namespace }}
+    namespace: monitoring
   repositoryRef:
     kind: GitRepository
     name: monitoring
-    namespace: {{ configuration.namespace }}
+    namespace: monitoring
   contexts:
     - loki # binds the loki context from the tf stack to this service
   helm:
@@ -25,7 +25,7 @@ spec:
     - loki.yaml.liquid
     repository:
       name: grafana
-      namespace: {{ configuration.namespace }}
+      namespace: monitoring
   clusterRef:
     kind: Cluster
     name: mgmt

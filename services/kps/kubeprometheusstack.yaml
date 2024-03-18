@@ -2,7 +2,7 @@ apiVersion: deployments.plural.sh/v1alpha1
 kind: ServiceDeployment
 metadata:
   name: kube-prometheus-stack
-  namespace: {{ configuration.namespace }}
+  namespace: monitoring
 spec:
   namespace: monitoring
   git:
@@ -11,7 +11,7 @@ spec:
   repositoryRef:
     kind: GitRepository
     name: monitoring
-    namespace: {{ configuration.namespace }}
+    namespace: monitoring
   helm:
     version: 56.5.0
     chart: kube-prometheus-stack
@@ -20,7 +20,7 @@ spec:
     - kubeprometheusstack.yaml.liquid
     repository:
       name: prometheus-community
-      namespace: {{ configuration.namespace }}
+      namespace: monitoring
   clusterRef:
     kind: Cluster
     name: mgmt
