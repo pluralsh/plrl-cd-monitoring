@@ -1,0 +1,30 @@
+server:
+  retention: "2d"
+  retentionSize: "1GB"
+  global:
+    ## How frequently to scrape targets by default
+    ##
+    scrape_interval: 1m
+    ## How long until a scrape request times out
+    ##
+    scrape_timeout: 10s
+    ## How frequently to evaluate rules
+    ##
+    evaluation_interval: 1m
+  ## https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_write
+  ##
+  remoteWrite:
+    - url: https://prometheus.boot-aws.onplural.sh/api/v1/write
+
+alertmanager:
+  enabled: true
+
+kube-state-metrics:
+  enabled: true
+
+prometheus-node-exporter:
+  enabled: true
+
+
+prometheus-pushgateway:
+  enabled: false
