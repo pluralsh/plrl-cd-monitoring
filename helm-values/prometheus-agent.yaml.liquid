@@ -7,5 +7,5 @@ server:
         password: {{ configuration.password }}
       write_relabel_configs:
         - source_labels: []  
-          target_label: 'clusterHandle'
+          target_label: 'cluster'
           replacement: {{ cluster.Handle }}
