@@ -1,5 +1,5 @@
 server:
-  retention: "2d"
+  retention: "1d"
   retentionSize: "1GB"
   global:
     ## How frequently to scrape targets by default
