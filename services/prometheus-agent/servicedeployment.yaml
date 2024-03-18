@@ -23,7 +23,7 @@ spec:
       namespace: monitoring
   clusterRef:
     kind: Cluster
-    name: mgmt
+    name: boot-staging
     namespace: infra
 ---
 # make global so it's also deployed on the other clusters
