@@ -1,0 +1,11 @@
+server:
+  remoteWrite:
+    - url: https://prometheus.boot-aws.onplural.sh/api/v1/write
+      name: mgmt-cluster-prometheus
+      basic_auth:
+        username: {{ configuration.user }}
+        password: {{ configuration.password }}
+      write_relabel_configs:
+        - source_labels: []  
+          target_label: 'clusterHandle'
+          replacement: {{ cluster.Handle }}
