@@ -72,9 +72,9 @@ prometheus:
         hosts:
           - prometheus.boot-aws.onplural.sh
     servicePort: 9090
+    pathType: Prefix
     paths:
-      - path: /.*
-        pathType: Prefix
+      - /.*
   prometheusSpec:
     enableFeatures:
       enableFeatures: -remote-write-receiver
