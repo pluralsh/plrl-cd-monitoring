@@ -54,7 +54,8 @@ grafana:
     plugins:
       enabled: false
       searchNamespace: ALL
-ingress:
+prometheus:
+  ingress:
     enabled: true
     ingressClassName: nginx
     annotations:
