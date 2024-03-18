@@ -17,6 +17,7 @@ spec:
     chart: prometheus
     valuesFiles:
     - prometheus-agent.yaml
+    - prometheus-agent.yaml.liquid
     repository:
       name: prometheus-community
       namespace: monitoring
