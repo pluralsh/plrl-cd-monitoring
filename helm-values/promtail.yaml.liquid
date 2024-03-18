@@ -1,2 +1,6 @@
 lokiUsername: {{ configuration.user }}
 lokiPassword: {{ configuration.password }}
+
+
+extraArgs:
+- -client.external-labels=cluster={{ cluster.handle }}
