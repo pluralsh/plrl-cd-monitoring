@@ -73,7 +73,7 @@ prometheus:
           - prometheus.boot-aws.onplural.sh
     servicePort: 9090
     paths:
-      - path: /
+      - path: /.*
         pathType: Prefix
   prometheusSpec:
     enableFeatures:
