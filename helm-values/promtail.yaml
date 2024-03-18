@@ -15,7 +15,7 @@ daemonset:
   enabled: true
 config:
   clients:
-  - url: https://loki.boot-aws.onplural.sh/api/api/v1/push
+  - url: https://loki.boot-aws.onplural.sh/loki/api/v1/push
     tenant_id: 1
     basic_auth:
       username: "{{ .Values.lokiUsername }}"
