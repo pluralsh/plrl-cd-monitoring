@@ -1,77 +1,13 @@
-# -- Overwrite the default name of the chart
-nameOverride: ""
-# -- Overwrite all resources name created by the chart
-fullnameOverride: ""
-# -- Override the deployment namespace
 namespaceOverride: monitoring
 
 loglevel: info
 
-plugins:
-  enabled: false
-  install:
-    enabled: true
-    fullImageName: curlimages/curl:latest
-    securityContext:
-      allowPrivilegeEscalation: false
-      seccompProfile:
-        type: RuntimeDefault
-      capabilities:
-        drop:
-        - ALL
-      readOnlyRootFilesystem: true
-      runAsNonRoot: true
-      runAsUser: 1000
-  folder: /opt/opencost/plugin
-  # leave this commented to always download most recent version of plugins
-  # version: <INSERT_SPECIFIC_PLUGINS_VERSION>
-  configs:
-    # datadog: |
-    #   {
-    #   "datadog_site": "<INSERT_DATADOG_SITE>",
-    #   "datadog_api_key": "<INSERT_DATADOG_API_KEY>",
-    #   "datadog_app_key": "<INSERT_DATADOG_APP_KEY>"
-    #   }
-
-# -- List of secret names to use for pulling the images
-imagePullSecrets: []
-
 serviceAccount:
-  # -- Specifies whether a service account should be created
   create: true
-  # --  Annotations to add to the service account
   annotations: {}
   # eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/eksctl-opencost
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
-  # -- Whether pods running as this service account should have an API token automatically mounted
-  automountServiceAccountToken: true
-
-# NetworkPolicies for ingress
-networkPolicies:
-  enabled: false
-
 
 service:
-  enabled: true
-  # --  Annotations to add to the service
-  annotations: {}
-  # --  Labels to add to the service account
-  labels: {}
-  # --  Kubernetes Service type
-  type: ClusterIP
-  # -- extra ports.  Useful for sidecar pods such as oauth-proxy
-  extraPorts: []
-    # - name: oauth-proxy
-    #   port: 8081
-    #   targetPort: 8081
-    # - name: oauth-metrics
-    #   port: 8082
-    #   targetPort: 8082
-
-# Create cluster role policies
-rbac:
   enabled: true
 
 opencost:
@@ -107,20 +43,6 @@ opencost:
         # keyFile: /etc/prom-certs/key.pem
 
   prometheus:
-    # -- Secret name that contains credentials for Prometheus
-    secret_name: ~
-    # -- Prometheus Basic auth username
-    username: ""
-    # -- Key in the secret that references the username
-    username_key: DB_BASIC_AUTH_USERNAME
-    # -- Prometheus Basic auth password
-    password: ""
-    # -- Key in the secret that references the password
-    password_key: DB_BASIC_AUTH_PW
-    # -- Prometheus Bearer token
-    bearer_token: ""
-    bearer_token_key: DB_BEARER_TOKEN
-
     internal:
       # -- Use in-cluster Prometheus
       enabled: true
@@ -131,22 +53,9 @@ opencost:
       # -- Service port of in-cluster Prometheus
       port: 9090
 
-
   ui:
     # -- Enable OpenCost UI
     enabled: true
-    image:
-      # -- UI container image registry
-      registry: ghcr.io
-      # -- UI container image name
-      repository: opencost/opencost-ui
-      # -- UI container image tag
-      # @default -- `""` (use appVersion in Chart.yaml)
-      tag: ""
-      # -- UI container image pull policy
-      pullPolicy: IfNotPresent
-      # -- Override the full image name for development purposes
-      fullImageName: null
     resources:
       # -- CPU/Memory resource requests
       requests:
@@ -156,48 +65,7 @@ opencost:
       limits:
         cpu: '999m'
         memory: '1Gi'
-    # used in the default.nginx.conf if you want to switch for using with Docker
-    # apiServer: 0.0.0.0
     uiPort: 9090
-    # Liveness probe configuration
-    livenessProbe:
-      # -- Whether probe is enabled
-      enabled: true
-      # -- Probe path
-      path: /healthz
-      # -- Number of seconds before probe is initiated
-      initialDelaySeconds: 30
-      # -- Probe frequency in seconds
-      periodSeconds: 10
-      # -- Number of failures for probe to be considered failed
-      failureThreshold: 3
-    # Readiness probe configuration
-    readinessProbe:
-      # -- Whether probe is enabled
-      enabled: true
-      # -- Probe path
-      path: /healthz
-      # -- Number of seconds before probe is initiated
-      initialDelaySeconds: 30
-      # -- Probe frequency in seconds
-      periodSeconds: 10
-      # -- Number of failures for probe to be considered failed
-      failureThreshold: 3
-    # -- The security options the container should be run with
-    securityContext: {}
-      # capabilities:
-      #   drop:
-      #   - ALL
-      # readOnlyRootFilesystem: true
-      # runAsNonRoot: true
-      # runAsUser: 1000
-
-    # -- A list of environment variables to be added to the pod
-    extraEnv: []
-
-    # -- A list of volume mounts to be added to the pod
-    extraVolumeMounts: []
-
     ingress:
       # -- Ingress for OpenCost UI
       enabled: true
@@ -211,43 +79,13 @@ opencost:
         nginx.ingress.kubernetes.io/auth-type: basic
         nginx.ingress.kubernetes.io/auth-secret: basic-auth
         nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required' 
-      # -- A list of host rules used to configure the Ingress
-      # @default -- See [values.yaml](values.yaml)
       hosts:
         - host: opencost.boot-aws.onplural.sh
           paths:
             - /
-      # -- Redirect ingress to an extraPort defined on the service such as oauth-proxy
       servicePort: http-ui
-      # servicePort: oauth-proxy
-      # -- Ingress TLS configuration
       tls: 
         - secretName: opencost-tls
           hosts:
             - opencost.boot-aws.onplural.sh
-  # -- Toleration labels for pod assignment
-  tolerations: []
-  # -- Node labels for pod assignment
-  nodeSelector: {}
-  # -- Affinity settings for pod assignment
-  affinity: {}
-  # -- Assign custom TopologySpreadConstraints rules
-  topologySpreadConstraints: []
-
-  # -- extra sidecars to add to the pod.  Useful for things like oauth-proxy for the UI
-  extraContainers: []
-    # - name: oauth-proxy
-    #   image: quay.io/oauth2-proxy/oauth2-proxy:v7.5.1
-    #   args:
-    #     - --upstream=http://127.0.0.1:9090
-    #     - --http-address=0.0.0.0:8081
-    #     - --metrics-address=0.0.0.0:8082
-    #     - ...
-    #   ports:
-    #     - name: oauth-proxy
-    #       containerPort: 8081
-    #       protocol: TCP
-    #     - name: oauth-metrics
-    #       containerPort: 8082
-    #       protocol: TCP
-    #   resources: {}
+  
