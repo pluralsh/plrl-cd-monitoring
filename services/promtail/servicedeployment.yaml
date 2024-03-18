@@ -36,6 +36,8 @@ metadata:
   name: promtail
   namespace: monitoring
 spec:
+  tags:
+    stage: dev
   serviceRef:
     name: promtail
     namespace: monitoring
