@@ -14,6 +14,9 @@ loki:
       username: {{ configuration.user }}
       password: {{ configuration.password }}
 
+extraArgs:
+- -client.external-labels=cluster={{ cluster.handle }}
+
 serviceAccount:
   annotations:
     eks.amazonaws.com/role-arn: {{ contexts.loki.roleArn }}
