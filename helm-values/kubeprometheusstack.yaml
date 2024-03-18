@@ -74,5 +74,5 @@ prometheus:
     servicePort: 9090
 
     paths:
-      - path: /
+      - path: /*
         pathType: Prefix
