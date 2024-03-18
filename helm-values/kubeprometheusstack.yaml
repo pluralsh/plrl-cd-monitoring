@@ -79,3 +79,5 @@ prometheus:
     enableFeatures:
       enableFeatures: -remote-write-receiver
     enableRemoteWriteReceiver: true
+    remoteWriteDashboards:
+      enabled: true
