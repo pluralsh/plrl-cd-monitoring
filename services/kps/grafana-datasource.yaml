@@ -15,6 +15,10 @@ data:
       orgId: 1
       uid: loki
       url: http://loki-gateway.monitoring
+      basicAuth: true
+      basicAuthUser: user
+      secureJsonData:
+        basicAuthPassword: $LOKI_DATASOURCE_PASSWORD
       jsonData:
         manageAlerts: true
         alertmanagerUid: alertmanager
