@@ -22,6 +22,11 @@ grafana:
   admin:
     password: admin # placeholder will get overwritten
     user: admin
+  datasources.yaml:
+    apiVersion: 1
+    deleteDatasources:
+    - name: Loki
+      orgId: 1
   service:
     type: ClusterIP
   ingress:
