@@ -16,15 +16,9 @@ data:
       uid: loki
       url: http://loki-gateway.monitoring
       basicAuth: true
+      basicAuthUser: user
       secureJsonData:
-        basicAuthUser: user
         basicAuthPassword: $LOKI_DATASOURCE_PASSWORD
+        httpHeaderValue1: '1'
       jsonData:
-        manageAlerts: true
-        alertmanagerUid: alertmanager
-        derivedFields:
-          - datasourceName: Tempo
-            matcherRegex: "traceID=(\\w+)"
-            name: TraceID
-            url: "$${__value.raw}"
-            datasourceUid: tempo
+        httpHeaderName1: 'X-Scope-OrgID'
