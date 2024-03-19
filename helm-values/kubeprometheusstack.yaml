@@ -46,13 +46,17 @@ grafana:
       secretName: grafana-tls
   sidecar:
     dashboards:
+      enabled: true
+      label: grafana_dashboard
+      labelValue: "1"
       provider:
         name: sidecar
         allowUiUpdates: true
         foldersFromFilesStructure: true
-      enabled: true
       searchNamespace: ALL
       folderAnnotation: k8s-sidecar-target-directory
+      annotations: 
+        k8s-sidecar-target-directory: "/tmp/dashboards/kubernetes"
     datasources:
       enabled: true
       searchNamespace: ALL
