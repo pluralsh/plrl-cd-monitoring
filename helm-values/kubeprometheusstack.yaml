@@ -18,6 +18,12 @@ additionalScrapeConfigs:
       type: 'A'
       port: 9003
 grafana:
+  envValueFrom:
+    LOKI_DATASOURCE_PASSWORD:
+      secretKeyRef:
+        name: basic-auth
+        key: password
+
   enabled: true
   admin:
     password: admin # placeholder will get overwritten
