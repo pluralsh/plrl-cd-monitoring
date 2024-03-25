@@ -148,11 +148,18 @@ kubeApiServer:
 kubelet:
   enabled: true
 
-
 coreDns:
   enabled: true
 
-# EKS hides metrics for kube controller manager and kube scheduler
+# already monitored with coreDns
+kubeDns:
+  enabled: false
+
+kubeProxy:
+  enabled: true
+
+
+# EKS hides metrics for controller manager, scheduler, and etcd
 # https://github.com/aws/eks-anywhere/issues/4405
 # disable kube controller manager scraping
 kubeControllerManager:
@@ -161,4 +168,8 @@ kubeControllerManager:
 # disable kube scheduler scraping
 kubeScheduler:
   enabled: false
+
+kubeEtcd:
+  enabled: false
+
 
