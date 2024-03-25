@@ -158,6 +158,18 @@ kubeDns:
 kubeProxy:
   enabled: true
 
+kubeStateMetrics:
+  enabled: true
+
+kube-state-metrics:
+  fullnameOverride: kps-kube-state-metrics
+  selfMonitor:
+    enabled: true
+
+nodeExporter:
+  enabled: true
+
+
 
 # EKS hides metrics for controller manager, scheduler, and etcd
 # https://github.com/aws/eks-anywhere/issues/4405
