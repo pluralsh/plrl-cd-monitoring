@@ -169,7 +169,17 @@ kube-state-metrics:
 nodeExporter:
   enabled: true
 
-
+prometheus-node-exporter:
+  fullnameOverride: node-exporter
+  prometheus:
+    monitor:
+      enabled: true
+  resources:
+    requests:
+      memory: 512Mi
+      cpu: 250m
+    limits:
+      memory: 2048Mi
 
 # EKS hides metrics for controller manager, scheduler, and etcd
 # https://github.com/aws/eks-anywhere/issues/4405
