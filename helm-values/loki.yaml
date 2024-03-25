@@ -1,6 +1,15 @@
 serviceAccount:
   annotations:
     test: "test"
+monitoring:
+  serviceMonitor:
+    enabled: true
+  selfMonitoring:
+    enabled: false
+    grafanaAgent:
+      installOperator: false
+
+
 gateway:
   enabled: true
   image:
