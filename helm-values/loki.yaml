@@ -1,6 +1,5 @@
-serviceAccount:
-  annotations:
-    test: "test"
+test:
+  enabled: false
 monitoring:
   serviceMonitor:
     enabled: true
