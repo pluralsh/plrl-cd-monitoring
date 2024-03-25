@@ -4,6 +4,7 @@ monitoring:
   serviceMonitor:
     enabled: true
   selfMonitoring:
+    # disable self monitoring as we can't run it without grafana agent operator, and we don't use grafana agent in this setup
     enabled: false
     grafanaAgent:
       installOperator: false
