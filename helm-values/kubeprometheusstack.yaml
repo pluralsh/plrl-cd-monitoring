@@ -40,8 +40,9 @@ defaultRules:
 
 
 alertmanager:
-  fullnameOverride: alertmanager
   enabled: true
+  fullnameOverride: kps-alertmanager
+
 
 prometheusOperator:
   tls:
@@ -61,13 +62,13 @@ additionalScrapeConfigs:
       type: 'A'
       port: 9003
 grafana:
+  enabled: true
+  fullnameOverride: kps-grafana
   envValueFrom:
     LOKI_DATASOURCE_PASSWORD:
       secretKeyRef:
         name: basic-auth
         key: password
-
-  enabled: true
   admin:
     password: admin # placeholder will get overwritten
     user: admin
@@ -139,3 +140,25 @@ prometheus:
     enableRemoteWriteReceiver: true
     remoteWriteDashboards:
       enabled: true
+
+# monitored k8s components
+kubeApiServer:
+  enabled: true
+
+kubelet:
+  enabled: true
+
+
+coreDns:
+  enabled: true
+
+# EKS hides metrics for kube controller manager and kube scheduler
+# https://github.com/aws/eks-anywhere/issues/4405
+# disable kube controller manager scraping
+kubeControllerManager:
+  enabled: false
+
+# disable kube scheduler scraping
+kubeScheduler:
+  enabled: false
+
