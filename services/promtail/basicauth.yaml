@@ -6,3 +6,5 @@ stringData:
   .htpasswd: {{ configuration.basicAuthHtpasswd }}
   user: {{ configuration.basicAuthUser }}
   password: {{ configuration.basicAuthPassword }}
+  auth: {{ configuration.basicAuthHtpasswd }}
+
