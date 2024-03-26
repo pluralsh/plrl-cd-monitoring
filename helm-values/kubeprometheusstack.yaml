@@ -140,6 +140,7 @@ prometheus:
     servicePort: 9090
     pathType: Prefix
     paths:
+      - /
       - /.*
   prometheusSpec:
     enableFeatures:
