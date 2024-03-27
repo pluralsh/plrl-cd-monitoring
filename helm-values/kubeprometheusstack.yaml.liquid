@@ -5,6 +5,7 @@ prometheus:
     additionalConfig:
       scrapeClasses:
         - name: cluster_label
+          default: true
           relabelings:
             - sourceLabels: []
               targetLabel: cluster
