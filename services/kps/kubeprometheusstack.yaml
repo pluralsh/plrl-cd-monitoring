@@ -13,7 +13,7 @@ spec:
     name: monitoring
     namespace: monitoring
   helm:
-    version: 56.5.0
+    version: 57.1.0
     chart: kube-prometheus-stack
     valuesFiles:
     - kubeprometheusstack.yaml
