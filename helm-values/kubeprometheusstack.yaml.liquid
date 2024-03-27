@@ -1,1 +1,11 @@
 namespaceOverride: {{ configuration.namespace }}
+prometheus:
+  prometheusSpec:
+    prometheusExternalLabelName: {{ cluster.handle }}
+    additionalConfig:
+      scrapeClasses:
+        - name: cluster_label
+          relabelings:
+            - sourceLabels: []
+              targetLabel: cluster
+              replacement: {{ cluster.handle }}
