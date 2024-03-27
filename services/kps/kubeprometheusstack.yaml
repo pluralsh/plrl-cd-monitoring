@@ -1,30 +1,30 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: ServiceDeployment
-metadata:
-  name: kube-prometheus-stack
-  namespace: monitoring
-spec:
-  namespace: monitoring
-  git:
-    folder: helm-values
-    ref: logstack
-  repositoryRef:
-    kind: GitRepository
-    name: monitoring
-    namespace: monitoring
-  helm:
-    version: 57.1.0
-    chart: kube-prometheus-stack
-    valuesFiles:
-    - kubeprometheusstack.yaml
-    - kubeprometheusstack.yaml.liquid
-    repository:
-      name: prometheus-community
-      namespace: monitoring
-  clusterRef:
-    kind: Cluster
-    name: mgmt
-    namespace: infra
+#apiVersion: deployments.plural.sh/v1alpha1
+#kind: ServiceDeployment
+#metadata:
+#  name: kube-prometheus-stack
+#  namespace: monitoring
+#spec:
+#  namespace: monitoring
+#  git:
+#    folder: helm-values
+#    ref: logstack
+#  repositoryRef:
+#    kind: GitRepository
+#    name: monitoring
+#    namespace: monitoring
+#  helm:
+#    version: 57.1.0
+#    chart: kube-prometheus-stack
+#    valuesFiles:
+#    - kubeprometheusstack.yaml
+#    - kubeprometheusstack.yaml.liquid
+#    repository:
+#      name: prometheus-community
+#      namespace: monitoring
+#  clusterRef:
+#    kind: Cluster
+#    name: mgmt
+#    namespace: infra
 #---
 ## make global so it's also deployed on the other clusters
 #apiVersion: deployments.plural.sh/v1alpha1
