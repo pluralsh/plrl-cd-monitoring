@@ -1,41 +1,41 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: ServiceDeployment
-metadata:
-  name: prometheus-agent
-  namespace: monitoring
-spec:
-  namespace: monitoring
-  git:
-    folder: helm-values
-    ref: logstack
-  repositoryRef:
-    kind: GitRepository
-    name: monitoring
-    namespace: monitoring
-  helm:
-    version: 25.17.0
-    chart: prometheus
-    valuesFiles:
-    - prometheus-agent.yaml
-    - prometheus-agent.yaml.liquid
-    repository:
-      name: prometheus-community
-      namespace: monitoring
-  clusterRef:
-    kind: Cluster
-    name: boot-staging
-    namespace: infra
----
-# make global so it's also deployed on the other clusters
-apiVersion: deployments.plural.sh/v1alpha1
-kind: GlobalService
-metadata:
-  name: prometheus-agent
-  namespace: monitoring
-spec:
-  tags:
-    stage: dev
-  serviceRef:
-    name: prometheus-agent
-    namespace: monitoring
+#apiVersion: deployments.plural.sh/v1alpha1
+#kind: ServiceDeployment
+#metadata:
+#  name: prometheus-agent
+#  namespace: monitoring
+#spec:
+#  namespace: monitoring
+#  git:
+#    folder: helm-values
+#    ref: logstack
+#  repositoryRef:
+#    kind: GitRepository
+#    name: monitoring
+#    namespace: monitoring
+#  helm:
+#    version: 56.5.0
+#    chart: kube-prometheus-stack
+#    valuesFiles:
+#    - kubeprometheusstack.yaml
+#    - kubeprometheusstack.yaml.liquid
+#    repository:
+#      name: prometheus-community
+#      namespace: monitoring
+#  clusterRef:
+#    kind: Cluster
+#    name: boot-staging
+#    namespace: infra
+#---
+## make global so it's also deployed on the other clusters
+#apiVersion: deployments.plural.sh/v1alpha1
+#kind: GlobalService
+#metadata:
+#  name: prometheus-agent
+#  namespace: monitoring
+#spec:
+#  tags:
+#    stage: dev
+#  serviceRef:
+#    name: prometheus-agent
+#    namespace: monitoring
 
