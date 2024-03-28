@@ -29,7 +29,7 @@ gateway:
     pullPolicy: IfNotPresent
   basicAuth:
     enabled: true
-    existingSecret: basic-auth
+    existingSecret: basic-auth-loki
   ingress:
     enabled: true
     ingressClassName: nginx

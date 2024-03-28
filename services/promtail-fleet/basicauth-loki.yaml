@@ -5,8 +5,8 @@ metadata:
 stringData:
   # .htpasswd key used by loki
   .htpasswd: {{ configuration.basicAuthHtpasswd }}
-  #user: {{ configuration.basicAuthUser }}
-  #password: {{ configuration.basicAuthPassword }}
+  user: {{ configuration.basicAuthUser }}
+  password: {{ configuration.basicAuthPassword }}
   # auth key used by prometheus ingress basic auth
   auth: {{ configuration.basicAuthHtpasswd }}
 
