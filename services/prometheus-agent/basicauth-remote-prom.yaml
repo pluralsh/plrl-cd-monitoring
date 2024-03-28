@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: basic-auth-remote-prom
+stringData:
+  user: {{ configuration.basicAuthUser }}
+  password: {{ configuration.basicAuthPassword }}
+
+
