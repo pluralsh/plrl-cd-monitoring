@@ -1,72 +1,73 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: ServiceDeployment
-metadata:
-  name: kps-agent-fleet
-  namespace: monitoring
-spec:
-  namespace: monitoring
-  git:
-    folder: helm-values
-    ref: logstack
-  repositoryRef:
-    kind: GitRepository
-    name: monitoring
-    namespace: monitoring
-  helm:
-    version: 57.1.0
-    chart: kube-prometheus-stack
-    valuesFiles:
-    - kps-agent.yaml
-    - kps-agent.yaml.liquid
-    repository:
-      name: prometheus-community
-      namespace: monitoring
-  clusterRef:
-    kind: Cluster
-    name: boot-staging
-    namespace: infra
----
-# make global so it's also deployed on the other clusters
-apiVersion: deployments.plural.sh/v1alpha1
-kind: GlobalService
-metadata:
-  name: kps-agent-fleet
-  namespace: monitoring
-spec:
-  tags:
-    stage: dev
-  serviceRef:
-    name: kps-agent-fleet
-    namespace: monitoring
----
-apiVersion: deployments.plural.sh/v1alpha1
-kind: ServiceDeployment
-metadata:
-  name: kps-agent-fleet-secrets
-  namespace: monitoring
-spec:
-  namespace: monitoring
-  git:
-    folder: services/kps-agent-fleet/secrets
-    ref: logstack
-  repositoryRef:
-    kind: GitRepository
-    name: monitoring
-    namespace: monitoring
-  clusterRef:
-    kind: Cluster
-    name: boot-staging
-    namespace: infra
----
-# make global so it's also deployed on the other clusters
-apiVersion: deployments.plural.sh/v1alpha1
-kind: GlobalService
-metadata:
-  name: kps-agent-fleet-secrets
-  namespace: monitoring
-spec:
-  tags:
-    stage: dev
-  serviceRef:
-    name: prometheus-agent
-    namespace: monitoring
+#apiVersion: deployments.plural.sh/v1alpha1
+#kind: ServiceDeployment
+#metadata:
+#  name: kps-agent-fleet
+#  namespace: monitoring
+#spec:
+#  namespace: monitoring
+#  git:
+#    folder: helm-values
+#    ref: logstack
+#  repositoryRef:
+#    kind: GitRepository
+#    name: monitoring
+#    namespace: monitoring
+#  helm:
+#    version: 57.1.0
+#    chart: kube-prometheus-stack
+#    valuesFiles:
+#    - kps-agent.yaml
+#    - kps-agent.yaml.liquid
+#    repository:
+#      name: prometheus-community
+#      namespace: monitoring
+#  clusterRef:
+#    kind: Cluster
+#    name: boot-staging
+#    namespace: infra
+#---
+## make global so it's also deployed on the other clusters
+#apiVersion: deployments.plural.sh/v1alpha1
+#kind: GlobalService
+#metadata:
+#  name: kps-agent-fleet
+#  namespace: monitoring
+#spec:
+#  tags:
+#    stage: dev
+#  serviceRef:
+#    name: kps-agent-fleet
+#    namespace: monitoring
+#---
+#apiVersion: deployments.plural.sh/v1alpha1
+#kind: ServiceDeployment
+#metadata:
+#  name: kps-agent-fleet-secrets
+#  namespace: monitoring
+#spec:
+#  namespace: monitoring
+#  git:
+#    folder: services/kps-agent-fleet/secrets
+#    ref: logstack
+#  repositoryRef:
+#    kind: GitRepository
+#    name: monitoring
+#    namespace: monitoring
+#  clusterRef:
+#    kind: Cluster
+#    name: boot-staging
+#    namespace: infra
+#---
+## make global so it's also deployed on the other clusters
+#apiVersion: deployments.plural.sh/v1alpha1
+#kind: GlobalService
+#metadata:
+#  name: kps-agent-fleet-secrets
+#  namespace: monitoring
+#spec:
+#  tags:
+#    stage: dev
+#  serviceRef:
+#    name: prometheus-agent
+#    namespace: monitoring
+#
