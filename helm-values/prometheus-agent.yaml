@@ -15,11 +15,57 @@ server:
 alertmanager:
   enabled: true
 
+prometheus-pushgateway:
+  enabled: false
+
+# monitored k8s components
+kubeApiServer:
+  enabled: true
+
+kubelet:
+  enabled: true
+
+coreDns:
+  enabled: true
+
+# already monitored with coreDns
+kubeDns:
+  enabled: false
+
+kubeProxy:
+  enabled: true
+
+kubeStateMetrics:
+  enabled: true
+
 kube-state-metrics:
+  fullnameOverride: pa-kube-state-metrics
+  selfMonitor:
+    enabled: true
+
+nodeExporter:
   enabled: true
 
 prometheus-node-exporter:
-  enabled: true
+  fullnameOverride: pa-node-exporter
+  prometheus:
+    monitor:
+      enabled: true
+  resources:
+    requests:
+      memory: 512Mi
+      cpu: 250m
+    limits:
+      memory: 2048Mi
 
-prometheus-pushgateway:
+# EKS hides metrics for controller manager, scheduler, and etcd
+# https://github.com/aws/eks-anywhere/issues/4405
+# disable kube controller manager scraping
+kubeControllerManager:
+  enabled: false
+
+kubeScheduler:
+  enabled: false
+
+kubeEtcd:
   enabled: false
