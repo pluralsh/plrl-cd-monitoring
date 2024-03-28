@@ -1,7 +1,7 @@
 apiVersion: deployments.plural.sh/v1alpha1
 kind: ServiceDeployment
 metadata:
-  name: prometheus-agent
+  name: kps-agent-fleet
   namespace: monitoring
 spec:
   namespace: monitoring
@@ -30,25 +30,24 @@ spec:
 apiVersion: deployments.plural.sh/v1alpha1
 kind: GlobalService
 metadata:
-  name: prometheus-agent
+  name: kps-agent-fleet
   namespace: monitoring
 spec:
   tags:
     stage: dev
   serviceRef:
-    name: prometheus-agent
+    name: kps-agent-fleet
     namespace: monitoring
 ---
-#TODO
 apiVersion: deployments.plural.sh/v1alpha1
 kind: ServiceDeployment
 metadata:
-  name: prometheus-agent-secrets
+  name: kps-agent-fleet-secrets
   namespace: monitoring
 spec:
   namespace: monitoring
   git:
-    folder: services/prometheus-agent/secrets
+    folder: services/kps-agent-fleet/secrets
     ref: logstack
   repositoryRef:
     kind: GitRepository
@@ -63,7 +62,7 @@ spec:
 apiVersion: deployments.plural.sh/v1alpha1
 kind: GlobalService
 metadata:
-  name: prometheus-agent-secrets
+  name: kps-agent-fleet-secrets
   namespace: monitoring
 spec:
   tags:
