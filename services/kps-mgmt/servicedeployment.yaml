@@ -1,7 +1,7 @@
 apiVersion: deployments.plural.sh/v1alpha1
 kind: ServiceDeployment
 metadata:
-  name: kube-prometheus-stack
+  name: kps-mgmt
   namespace: monitoring
 spec:
   namespace: monitoring
